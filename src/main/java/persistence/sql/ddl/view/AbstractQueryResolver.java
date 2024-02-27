@@ -32,7 +32,7 @@ public abstract class AbstractQueryResolver implements QueryResolver {
                 return sb.toString();
             })
             .reduce((columnA, columnB) -> String.join(COLUMN_SEPARATOR, columnA, columnB))
-            .orElseThrow(IllegalStateException::new);
+            .orElseThrow(()->new IllegalStateException("fail to combine columns"));
     }
 
     protected abstract String addPrimaryConstraint(DatabasePrimaryColumn primaryColumn);

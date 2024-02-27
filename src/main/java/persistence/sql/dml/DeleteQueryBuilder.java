@@ -13,7 +13,7 @@ public class DeleteQueryBuilder implements DeleteQueryBuild {
     public <T> Query delete(T entity) {
         DatabaseTable table = new DatabaseTable(entity);
 
-        Where where = Where.from(table.getName());
+        Where where = new Where(table.getName());
         table.getAllColumns().forEach(column -> where.and(Condition.equal(column)));
 
         String sql = String.format(DELETE_TEMPLATE, where.getTableName(), where.getWhereClause());

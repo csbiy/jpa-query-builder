@@ -11,7 +11,7 @@ class WhereTest {
     @Test
     void should_return_where_clause() {
         String tableName = "users";
-        Where where = Where.from(tableName)
+        Where where = new Where(tableName)
                 .and(Condition.equal(new MockCondition("name", "'chansoo'")))
                 .or(Condition.equal(new MockCondition("name", "'nextstep'")))
                 .and(Condition.equal(new MockCondition("age", "29")));
@@ -24,7 +24,7 @@ class WhereTest {
 
     @Test
     void should_throw_exception_when_where_clause_not_valid() {
-        assertThatThrownBy(() -> Where.from("users").getWhereClause())
+        assertThatThrownBy(() -> new Where("users").getWhereClause())
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("where clause is empty");
     }

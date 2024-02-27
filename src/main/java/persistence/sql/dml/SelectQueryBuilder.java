@@ -26,7 +26,7 @@ public class SelectQueryBuilder implements SelectQueryBuild {
         DatabaseTable table = new DatabaseTable(entity);
 
         Condition condition = Condition.equal(table.getPrimaryColumn(), id);
-        Where where = Where.from(table.getName())
+        Where where = new Where(table.getName())
                 .and(condition);
 
         String sql = String.format(FIND_WITH_CONDITION_TEMPLATE, where.getTableName(), where.getWhereClause());

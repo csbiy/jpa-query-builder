@@ -8,13 +8,9 @@ public class Where {
 
     private final StringBuilder query;
 
-    private Where(String tableName) {
+    public Where(String tableName) {
         this.tableName = tableName;
         this.query = new StringBuilder();
-    }
-
-    public static Where from(String tableName) {
-        return new Where(tableName);
     }
 
     public String getWhereClause() {

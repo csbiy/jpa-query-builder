@@ -12,15 +12,12 @@ public class ColumnName {
 
     public ColumnName(Field field) {
         this.javaFieldName = field.getName();
-        this.jdbcColumnName = getJdbcColumnName(field);
-    }
-
-    private String getJdbcColumnName(Field field) {
         Column annotation = field.getAnnotation(Column.class);
         if (annotation != null && annotation.name().length() > 0) {
-            return annotation.name();
+            this.jdbcColumnName = annotation.name();
+            return;
         }
-        return field.getName();
+        this.jdbcColumnName = javaFieldName;
     }
 
     public String getJavaFieldName() {
